@@ -181,7 +181,7 @@ function playSong() {
 function playOn() {
     audio.play();
     play_on = true;
-    play.innerHTML = '&#9208';
+    play.innerHTML = '<i class="fa fa-pause"></i>';
     play.style.backgroundColor = "orange";
 }
 
@@ -191,7 +191,7 @@ function playOn() {
 function pauseOff() {
     audio.pause();
     play_on = false;
-    play.innerHTML = '&#9658;';
+    play.innerHTML = '<i class="fa fa-play"></i>;';
 }
 
 
