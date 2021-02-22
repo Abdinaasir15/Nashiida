@@ -4,15 +4,16 @@ let artist = document.querySelector("#artist");
 let present = document.querySelector("#present");
 let total = document.querySelector("#total");
 let singer = document.querySelector("#singer");
-let change = document.querySelector("#change");
+let play = document.querySelector("#change");
 let slider = document.querySelector("#duration_slider");
+let auto_play = document.querySelector("#auto");
 
 let play_on = false;
-
 let audio = document.createElement("audio");
 let tirada = 0;
-let autoplay = 0;
+
 let timer;
+let autoplay = 0;
 
 // create lists
 
@@ -44,7 +45,7 @@ let all_hees = [{
 }, {
     title: "Insha Allah",
     artist: "You'll find Your way",
-    img: "../music/img/nasser1.png",
+    img: "imgs/nasser3.jpeg",
     path: "coll/5.mp3",
     singer: "By Meher Zain "
 }, {
@@ -120,7 +121,7 @@ let all_hees = [{
     title: "صباحُ الحـبِّ يا لغتي ",
     artist: "subax wanaaagsan",
     img: "imgs/nasser2.jpeg",
-    path: "coll/18.mp3",
+    path: "coll/18.m4a",
     singer: "by ........."
 }, {
     title: "أ ب ت ث ج ح ",
@@ -140,14 +141,15 @@ let all_hees = [{
 // reset the song
 // reset song slider
 
-// function reset_slider() {
-//     slider.value = 0;
-// }
+function reset_slider() {
+    slider.value = 0;
+}
 
 // hadller all
 
 function dhamaan(tirada) {
     clearInterval(timer);
+    reset_slider();
 
     // reset_slider();
     artist.innerHTML = all_hees[tirada].artist;
@@ -179,8 +181,8 @@ function playSong() {
 function playOn() {
     audio.play();
     play_on = true;
-    change.innerHTML = '<i class="fa fa-pause"></i>';
-    change.style.backgroundColor = "orange";
+    play.innerHTML = '&#9208';
+    play.style.backgroundColor = "orange";
 }
 
 
@@ -189,29 +191,8 @@ function playOn() {
 function pauseOff() {
     audio.pause();
     play_on = false;
-    change.innerHTML = '<i class="fa fa-play"></i>';
+    play.innerHTML = '&#9658;';
 }
-
-// change slider duration
-
-function change_duration() {
-    slider_position = audio.duration * (slider.value / 100);
-    audio.currentTime = slider_position;
-}
-
-// lets work on auto play now
-// function auto_switch() {
-//     if (autoplay == 1) {
-//         autoplay = 0;
-//         // autoplay.style.background = "rgba(255,255,255,0.2)";
-//         document.getElementById('auto').style.backgroundColor = "red";
-//     } else {
-//         autoplay = 1;
-//         // autoplay.style.background = "#ff8A65";
-//         document.getElementById('auto').style.backgroundColor = "#ff8A65";
-
-//     }
-// }
 
 
 //  lets work on the prev btn
@@ -241,6 +222,30 @@ function next() {
 
     }
 }
+
+
+// play slider duration
+
+function play_duration() {
+    slider_position = audio.duration * (slider.value / 100);
+    audio.currentTime = slider_position;
+}
+
+
+// autoplay function
+function auto_switch() {
+    if (autoplay == 1) {
+        autoplay = 0;
+        auto_play.style.background = "rgba(255,255,255,0.2)";
+        playOn();
+    } else {
+        autoplay = 1;
+        auto_play.style.background = "red";
+        playOn();
+    }
+}
+
+
 
 function range_slider() {
     let postion = 0;
